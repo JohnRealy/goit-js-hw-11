@@ -43,6 +43,10 @@ const spinnerOpts = {
 };
 
 const spinner = new Spinner(spinnerOpts);
+const lightbox = new SimpleLightbox('.gallary a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 let page = 1;
 
@@ -52,6 +56,7 @@ function handleSubmit(e) {
   gallary.innerHTML = '';
   const searchQuery = e.target.elements.input.value.trim();
   if (searchQuery.length === 0) {
+    spinnerStop();
     return iziToast.error({
       message: 'Sorry, your query is empty Please try again!',
       position: 'topRight',
@@ -69,10 +74,7 @@ function handleSubmit(e) {
         });
       }
       gallary.insertAdjacentHTML('beforeend', createMarkup(res.hits));
-      const lightbox = new SimpleLightbox('.gallary a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-      });
+
       lightbox.refresh();
     })
     .catch(error => {
