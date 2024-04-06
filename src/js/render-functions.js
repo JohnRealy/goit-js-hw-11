@@ -2,10 +2,12 @@ export function createMarkup(arr) {
   return arr
     .map(
       item => `<li class="gallary-item">
-              <img
-                src="${item.previewURL}"
-                alt=""
-              />
+              <a class="gallery-link" href="${item.largeImageURL}">
+                <img
+                  src="${item.webformatURL}"
+                  alt="${item.tags}"
+                />
+              </a>
               <ul class="gallary-item-info">
                 <li class="info-block">
                   <h5>Likes</h5>

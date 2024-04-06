@@ -16,7 +16,11 @@ export function getPhotos(q, page) {
   const url = `${BASE_URL}${END_POINT}/?${options}`;
   return fetch(url).then(res => {
     if (!res.ok) {
-      throw new Error('Ups.. Something wrong');
+      iziToast.error({
+        title: 'Error',
+        message: 'Ups.. Something wrong',
+        position: 'topRight',
+      });
     }
     return res.json();
   });
